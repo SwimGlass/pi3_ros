@@ -1,5 +1,5 @@
 # pi3_ros
-前言
+## 前言
 
 我之前已經試過了許許多多的方法 , 但是在raspberry pi 3 上面都不行 , 這邊列出別人使用但我自己試都不行的方法 , 網路上很多人都很順利 , 歡迎大家來討論 http://wiki.ros.org/ROSberryPi/Setting%20up%20ROS%20on%20RaspberryPi http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi http://wiki.ros.org/indigo/Installation/UbuntuARM
 
@@ -7,7 +7,7 @@ https://drive.google.com/file/d/0B4lNqhhSk7SQLVNZYzBZbm9mUG8/view?usp=sharing
 
 https://drive.google.com/file/d/0B4lNqhhSk7SQLVNZYzBZbm9mUG8/edit
 
-mavros on rpi3
+## mavros on raspberry pi 3
 
 首先要準備一張大於8Ｇ的sd 卡 OS有點大 去https://ubuntu-mate.org/raspberry-pi/ 下載ubuntu-mate按照上面的安裝指令
 
@@ -16,7 +16,7 @@ unxz ubuntu-mate-16.04-desktop-armhf-raspberry-pi.img.xz
 sudo ddrescue -D --force ubuntu-mate-16.04-desktop-armhf-raspberry-pi.img /dev/sdx
 安裝完後開機並設定網路我自己試用固定IP就看自己喜歡都行
 
-安裝ROS
+## 安裝ROS
 
 參考：http://wiki.ros.org/kinetic/Installation/Ubuntu Setup your sources.list Setup your computer to accept software from packages.ros.org. ROS Kinetic ONLY supports Wily (Ubuntu 15.10), Xenial (Ubuntu 16.04) and Jessie (Debian 8) for debian packages.
 
@@ -73,22 +73,22 @@ https://github.com/mavlink/mavros/blob/master/mavros/README.md#installation Sour
 
 sudo apt-get install python-catkin-tools python-rosinstall-generator -y
 
-# 1. Create the workspace: unneded if you already has workspace
+### 1. Create the workspace: unneded if you already has workspace
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 catkin init
 wstool init src
 
-# 2. Install MAVLink
+### 2. Install MAVLink
 #    we use the Kinetic reference for all ROS distros as its not distro-specific and up to date
 rosinstall_generator --rosdistro kinetic --upstream mavlink | tee /tmp/mavros.rosinstall
 
-# 3. Install MAVROS: get source (upstream - released)
+### 3. Install MAVROS: get source (upstream - released)
 rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall
 # alternative: latest source
 # rosinstall_generator --upstream-development mavros | tee -a /tmp/mavros.rosinstall
 
-# 4. Create workspace & deps
+### 4. Create workspace & deps
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src -j4
 rosdep install --from-paths src --ignore-src -y
@@ -101,16 +101,16 @@ git clone https://github.com/mavlink/mavlink.git
 cd ~/catkin 
 and do next
 
-5. Build source
+### 5. Build source
 
 catkin build -j2
 
-# 6. Make sure that you use setup.bash or setup.zsh from workspace.
+#### 6. Make sure that you use setup.bash or setup.zsh from workspace.
 #    Else rosrun can't find nodes from this workspace.
 source devel/setup.bash
 照著這個流程就可以把mavros裝好了
 
-補充
+##補充
 
 如果遇到了run out of memory可以參考下面 if you are running out of memory, you may want to increase your swap memory. Or you might have no swap enabled at all. In Ubuntu (it should work for other distributions as well) you can check your swap by:
 
