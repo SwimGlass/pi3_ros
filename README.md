@@ -66,7 +66,8 @@ If you have more than one ROS distribution installed, ~/.bashrc must only source
      source /opt/ros/kinetic/setup.bash
 Getting rosinstall rosinstall is a frequently used command-line tool in ROS that is distributed separately. It enables you to easily download many source trees for ROS packages with one command. To install this tool on Ubuntu, run:
 
-sudo apt-get install python-rosinstall
+     sudo apt-get install python-rosinstall
+
 Install mavros
 
 https://github.com/mavlink/mavros/blob/master/mavros/README.md#installation Source installation Use wstool utility for retrieving sources and catkin tool for build. NOTE: The source installation instructions are for the ROS Kinetic release.
